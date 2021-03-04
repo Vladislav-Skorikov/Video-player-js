@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Video</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            var $ = function (id) { return document.getElementById(id) };
+            var v = $("video");
+            var time;
+            v.currentTime = localStorage.getItem(time);
+
+            $("playButton").onclick = function (e) {
+
+                if (v.paused) {
+                    v.play();
+                    e.target.src = "video/pause.png";
+
+                }
+                else {
+                    v.pause();
+                    e.target.src = "video/play.png";
+
+                }
+                localStorage.setItem(time, v.currentTime);
+            }
+
+
+            $("rewindBack").onclick = function () {
+                v.currentTime -= 10;
+            }
+            $("rewindForward").onclick = function () {
+                v.currentTime += 10;
+            }
+            $("volumeDown").onclick = function () {
+                v.volume -= 0.1;
+            }
+            $("volumeUp").onclick = function () {
+                v.volume += 0.1;
+            }
+            $("stopButton").onclick = function () {
+                v.pause();
+                v.currentTime = 0;
+                $("playButton").src = "video/play.png";
+            }
+            $("fullScr").onclick = function () {
+                var elem = $("video");
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullScreen) {
+                    elem.webkitRequestFullScreen();
+                }
+            }
+            $("one").onclick = function () {
+                v.src = "video/Anton Ishutin ,Nezhdan ft.mp4";
+            }
+            $("two").onclick = function () {
+                v.src = "video/Gorgon City - Unmissable ft.mp4";
+            }
+            $('three').onclick = function () {
+                v.src = "video/JVLA - Such a Whore (Stellular Remix).mp4";
+            }
+
+        }
+    </script>
+    <style>
+
+        img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            user-select: none;
+            text-align: center;
+            float: left;
+            margin-left: 5px;
+        }
+
+            img:hover {
+                transform: scale(1.2);
+            }
+
+        .myPlayer {
+            position: absolute;
+            top: 50px;
+            left: 320px;
+            width: auto;
+            height: auto;
+        }
+
+        #video {
+            height: 400px;
+            width: 710px;
+            border: 2px solid #333333;
+            position: relative;
+        }
+
+            #video::-webkit-media-controls {
+                display: none !important;
+            }
+
+        .controls {
+            position: relative;
+            top: -4px;
+            width: auto;
+            height: 40px;
+            background-color: #333333;
+        }
+
+        #fullScr {
+            float: right;
+            margin-right: 5px;
+        }
+
+        nav a {
+            color: #333333;
+        }
+
+            nav a:link, a:visited {
+                display: block;
+                font-weight: bold;
+                padding: 10px;
+                margin: 5px;
+                text-decoration: none;
+            }
+
+            nav a:hover {
+                color: white;
+                background-color: #333333;
+            }
+
+            nav a:active {
+                color: palevioletred;
+                background-color: #c4c4c4;
+            }
+    </style>
+</head>
+<body>
+    <div class="myPlayer">
+        <video id="video">
+            <source src="video/Anton Ishutin ,Nezhdan ft.mp4" />
+            <!--<source src="video/Cat Dealers, LOthief, Santti - Sunshine (Extended Mix).mp4" />
+            <source src="video/Phil Collins   In The Air Tonight Panski & John Skyfield Remix.mp4" />-->
+        </video>
+        <div class="controls">
+            <div><img id="playButton" src="video/play.png" alt="play" /></div>
+            <div><img id="rewindBack" src="video/left.png" alt="back" /></div>
+            <div><img id="rewindForward" src="video/right.png" alt="fw" /></div>
+            <div><img id="volumeDown" src="video/down.png" alt="quieter" /></div>
+            <div><img id="volumeUp" src="video/up.png" alt="louder" /></div>
+            <div><img id="stopButton" src="video/stop.png" alt="stop" /></div>
+            <div><img id="fullScr" src="video/fullscreen.png" alt="full" /></div>
+        </div>
+        <nav>
+            <a id="one" href="#">Video 1</a>
+            <a id="two" href="#">Video 2</a>
+            <a id="three" href="#">Video 3</a>
+        </nav>
+    </div>
+</body>
+</html>
